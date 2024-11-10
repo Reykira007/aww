@@ -1,6 +1,7 @@
 package com.uts.babelfood;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.uts.babelfood.databinding.ActivityFoodDetailBinding;
@@ -43,10 +44,20 @@ public class FoodDetailActivity extends AppCompatActivity {
         binding.btnBack.setOnClickListener(v -> finish());
     }
 
+    private void showLoading() {
+        binding.loadingLayout.setVisibility(View.VISIBLE);
+    }
+
+    private void hideLoading() {
+        binding.loadingLayout.setVisibility(View.GONE);
+    }
+
     private void loadFoodDetail() {
+        showLoading();
         url.getApiService().getFoodDetail(foodId).enqueue(new Callback<FoodDetailResponse>() {
             @Override
             public void onResponse(Call<FoodDetailResponse> call, Response<FoodDetailResponse> response) {
+                hideLoading();
                 if (response.isSuccessful() && response.body() != null) {
                     FoodDetailResponse detailResponse = response.body();
                     if (detailResponse.isStatus() && detailResponse.getData() != null
@@ -55,45 +66,55 @@ public class FoodDetailActivity extends AppCompatActivity {
                         displayFoodDetail(foodDetail);
                         Toast.makeText(FoodDetailActivity.this,
                                 "Data detail berhasil diambil", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(FoodDetailActivity.this,
+                                "Data tidak ditemukan", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     Toast.makeText(FoodDetailActivity.this,
-                            "Failed to load detail", Toast.LENGTH_SHORT).show();
+                            "Gagal memuat data", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<FoodDetailResponse> call, Throwable t) {
+                hideLoading();
                 Toast.makeText(FoodDetailActivity.this,
-                        "Network error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                        "Error koneksi: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     private void displayFoodDetail(FoodDetail food) {
-        // Set image
-        Integer resourceId = FOOD_IMAGES.get(food.getImageName());
-        binding.ivFoodDetail.setImageResource(resourceId != null ? resourceId : R.drawable.img_lakso);
+        try {
+            Integer resourceId = FOOD_IMAGES.get(food.getImageName());
+            binding.ivFoodDetail.setImageResource(resourceId != null ? resourceId : R.drawable.img_lakso);
 
-        // Set basic info
-        binding.tvFoodName.setText(food.getName());
-        binding.tvRating.setText(String.format("%.1f", food.getRating()));
-        binding.tvTotalReviews.setText(String.format("(%d reviews)", food.getTotalReviews()));
-        binding.tvPrice.setText(food.getPriceRange());
+            binding.tvFoodName.setText(food.getName());
+            binding.tvRating.setText(String.format("%.1f", food.getRating()));
+            binding.tvTotalReviews.setText(String.format("(%d reviews)", food.getTotalReviews()));
+            binding.tvPrice.setText(food.getPriceRange());
 
-        // Set description and history
-        binding.tvDescription.setText(food.getDescription());
-        binding.tvHistory.setText(food.getHistory());
+            binding.tvDescription.setText(food.getDescription());
+            binding.tvHistory.setText(food.getHistory());
 
-        // Set additional info
-        binding.tvPortion.setText(food.getPortionSize());
-        binding.tvSpicyLevel.setText(food.getSpicyLevel());
-        binding.tvCalories.setText(food.getCalories());
-        binding.tvBestTime.setText(food.getBestTime());
+            binding.tvPortion.setText(food.getPortionSize());
+            binding.tvSpicyLevel.setText(food.getSpicyLevel());
+            binding.tvCalories.setText(food.getCalories());
+            binding.tvBestTime.setText(food.getBestTime());
 
-        // Set ingredients and tips
-        binding.tvIngredients.setText(food.getIngredients());
-        binding.tvEatingTips.setText(food.getEatingTips());
-        binding.tvAccompaniment.setText(food.getAccompaniment());
+            binding.tvIngredients.setText(food.getIngredients());
+            binding.tvEatingTips.setText(food.getEatingTips());
+            binding.tvAccompaniment.setText(food.getAccompaniment());
+
+        } catch (Exception e) {
+            Toast.makeText(this, "Error menampilkan data: " + e.getMessage(),
+                    Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }

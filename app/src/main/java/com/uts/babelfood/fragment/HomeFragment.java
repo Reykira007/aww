@@ -55,10 +55,24 @@ public class HomeFragment extends Fragment implements FoodAdapter.OnFoodClickLis
         binding.rvPopular.setAdapter(foodAdapter);
     }
 
+    private void showLoading() {
+        if (binding != null && binding.loadingLayout != null) {
+            binding.loadingLayout.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void hideLoading() {
+        if (binding != null && binding.loadingLayout != null) {
+            binding.loadingLayout.setVisibility(View.GONE);
+        }
+    }
+
     private void loadPopularFoods() {
+        showLoading();
         url.getApiService().getPopularFoods().enqueue(new Callback<FoodResponse>() {
             @Override
             public void onResponse(Call<FoodResponse> call, Response<FoodResponse> response) {
+                hideLoading();
                 if (response.isSuccessful() && response.body() != null) {
                     FoodResponse foodResponse = response.body();
                     if (foodResponse.isStatus() && foodResponse.getData() != null) {
@@ -70,17 +84,19 @@ public class HomeFragment extends Fragment implements FoodAdapter.OnFoodClickLis
                             foodList.add(food);
                         }
                         foodAdapter.notifyDataSetChanged();
-
                         Toast.makeText(getContext(), "Data berhasil diambil", Toast.LENGTH_SHORT).show();
+                    } else {
+                        showError("Data tidak ditemukan");
                     }
                 } else {
-                    showError("Failed to load data");
+                    showError("Gagal memuat data");
                 }
             }
 
             @Override
             public void onFailure(Call<FoodResponse> call, Throwable t) {
-                showError("Network error: " + t.getMessage());
+                hideLoading();
+                showError("Error koneksi: " + t.getMessage());
             }
         });
     }
@@ -97,14 +113,19 @@ public class HomeFragment extends Fragment implements FoodAdapter.OnFoodClickLis
     }
 
     private void navigateToFoodDetail(int foodId) {
-        Intent intent = new Intent(requireContext(), FoodDetailActivity.class);
-        intent.putExtra("food_id", foodId);
-        startActivity(intent);
+        try {
+            Intent intent = new Intent(requireContext(), FoodDetailActivity.class);
+            intent.putExtra("food_id", foodId);
+            startActivity(intent);
+        } catch (Exception e) {
+            showError("Gagal membuka detail: " + e.getMessage());
+        }
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        hideLoading();
         binding = null;
     }
 }
