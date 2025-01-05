@@ -118,20 +118,20 @@
                 app:layout_constraintTop_toBottomOf="@id/news" />
 
             <TextView
-                android:id="@+id/popular"
+                android:id="@+id/category"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="20dp"
                 android:fontFamily="@font/epilogue_bold"
-                android:text="Popular"
+                android:text="Explore Categories"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/banner" />
+                app:layout_constraintTop_toBottomOf="@id/banner" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvPopular"
+                android:id="@+id/rvKategori"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -140,11 +140,11 @@
                 android:clipToPadding="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/popular"
-                app:spanCount="2"
-                tools:itemCount="4"
+                app:layout_constraintTop_toBottomOf="@id/category"
+                app:spanCount="3"
+                tools:itemCount="6"
                 tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                tools:listitem="@layout/item_food" />
+                tools:listitem="@layout/item_category" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

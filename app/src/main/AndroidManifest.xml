@@ -17,7 +17,22 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".FoodDetailActivity"
+            android:name=".AddOrderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddInformationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".InformasiActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PromoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DrinkActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FoodActivity"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Tanggal Informasi -->
+        <TextView
+            android:id="@+id/tvTanggalInformasi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="11 Nov 2024"
+            android:textSize="14sp"
+            android:textColor="@android:color/darker_gray" />
+
+        <!-- Email -->
+        <TextView
+            android:id="@+id/tvEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="user@example.com"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black" />
+
+        <!-- Komentar -->
+        <TextView
+            android:id="@+id/tvKomentar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Ini adalah komentar pengguna tentang Babel Food."
+            android:textSize="14sp"
+            android:textColor="@android:color/black" />
+
+        <!-- Tanggapan Admin -->
+        <TextView
+            android:id="@+id/tvTanggapan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Tanggapan: Toko pindah lokasi."
+            android:textSize="14sp"
+            android:textColor="@android:color/holo_blue_dark" />
+
+        <!-- Status -->
+        <TextView
+            android:id="@+id/tvStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Status: Pending"
+            android:textSize="14sp"
+            android:textColor="@android:color/holo_orange_dark" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
