@@ -49,6 +49,12 @@ public class KategoriAdapter extends RecyclerView.Adapter<KategoriAdapter.Katego
             case "Informasi":
                 holder.ikonKategori.setImageResource(R.drawable.informasi);
                 break;
+            case "Tambah Resep":
+                holder.ikonKategori.setImageResource(R.drawable.resep);
+                break;
+            case "Request Menu":
+                holder.ikonKategori.setImageResource(R.drawable.review);
+                break;
             default:
                 holder.ikonKategori.setImageResource(R.drawable.baseline_image_not_supported_24);
                 break;
@@ -68,6 +74,12 @@ public class KategoriAdapter extends RecyclerView.Adapter<KategoriAdapter.Katego
                     break;
                 case "Informasi":
                     intent = new Intent(context, InformasiActivity.class);
+                    break;
+                case "Tambah Resep":
+                    intent = new Intent(context, AddResepActivity.class);
+                    break;
+                case "Request Menu":
+                    intent = new Intent(context, RequestMenuActivity.class);
                     break;
                 default:
                     intent = new Intent(context, HomeFragment.class); // Default Activity

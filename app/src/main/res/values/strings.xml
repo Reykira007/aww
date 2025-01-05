@@ -7,4 +7,8 @@
     <string name="gambar_minuman">Gambar Minuman\n</string>
     <string name="gambar_promo">Gambar promo\n</string>
     <string name="add_information">tambah informasi\n</string>
+    <string-array name="jenis_menu_array">
+        <item>Makanan</item>
+        <item>Minuman</item>
+    </string-array>
 </resources>

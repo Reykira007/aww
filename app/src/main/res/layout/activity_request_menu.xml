@@ -1,0 +1,79 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Nama Menu -->
+        <EditText
+            android:id="@+id/etNamaMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nama Menu"
+            android:inputType="text" />
+
+        <!-- Deskripsi Menu -->
+        <EditText
+            android:id="@+id/etDeskripsiMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Deskripsi Menu"
+            android:inputType="textMultiLine"
+            android:layout_marginTop="16dp" />
+
+        <!-- Jenis Menu -->
+        <Spinner
+            android:id="@+id/spinnerJenisMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:entries="@array/jenis_menu_array" />
+
+        <!-- Email -->
+        <EditText
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:layout_marginTop="16dp" />
+
+        <!-- Perkiraan Harga -->
+        <EditText
+            android:id="@+id/etPerkiraanHarga"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Perkiraan Harga"
+            android:inputType="numberDecimal"
+            android:layout_marginTop="16dp" />
+
+        <!-- Alasan Request -->
+        <EditText
+            android:id="@+id/etAlasanRequest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Alasan Permintaan"
+            android:inputType="textMultiLine"
+            android:layout_marginTop="16dp" />
+
+        <!-- Gambar Referensi -->
+        <Button
+            android:id="@+id/btnUploadGambar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Upload Gambar Referensi"
+            android:layout_marginTop="16dp" />
+
+        <!-- Submit Button -->
+        <Button
+            android:id="@+id/btnSubmitRequest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Submit" />
+    </LinearLayout>
+</ScrollView>

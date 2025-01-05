@@ -48,6 +48,13 @@ public class MakananAdapter extends RecyclerView.Adapter<MakananAdapter.MakananV
             intent.putExtra("harga_makanan", makanan.getHarga());
             context.startActivity(intent);
         });
+
+        holder.namaMakanan.setOnClickListener(v -> {
+            Intent intent = new Intent(context, RequestMenuActivity.class);
+            intent.putExtra("id_makanan", makanan.getId_makanan());
+            intent.putExtra("nama_makanan", makanan.getNama_makanan());
+            context.startActivity(intent);
+        });
     }
 
     @Override

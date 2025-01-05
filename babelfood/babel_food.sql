@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 05, 2025 at 04:46 PM
+-- Generation Time: Jan 05, 2025 at 06:03 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -69,7 +69,9 @@ INSERT INTO `kategori` (`id_kategori`, `nama_kategori`, `dibuat_pada`) VALUES
 (1, 'Makanan', '2025-01-05 12:15:07'),
 (2, 'Minuman', '2025-01-05 12:15:07'),
 (3, 'Promo', '2025-01-05 12:15:07'),
-(4, 'Informasi', '2025-01-05 12:15:07');
+(4, 'Informasi', '2025-01-05 12:15:07'),
+(5, 'Tambah Resep', '2025-01-05 16:36:25'),
+(6, 'Request Menu', '2025-01-05 16:36:25');
 
 -- --------------------------------------------------------
 
@@ -175,6 +177,56 @@ INSERT INTO `promo` (`id_promo`, `nama_promo`, `deskripsi`, `gambar`, `harga_awa
 (3, 'Paket Hemat Otak-Otak', 'Paket hemat otak-otak dengan minuman gratis.', 'otak_otak.png', 30000.00, 25000.00, 3, '2025-01-05 14:16:17'),
 (4, 'Diskon Kopi Tung Tau', 'Cicipi Kopi Tung Tau dengan diskon menarik.', 'kopi_tung_tau.png', 15000.00, 10000.00, 3, '2025-01-05 14:16:17');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `request_menu`
+--
+
+CREATE TABLE `request_menu` (
+  `id_request` int(11) NOT NULL,
+  `nama_menu` varchar(100) NOT NULL,
+  `deskripsi_menu` text NOT NULL,
+  `jenis_menu` enum('Makanan','Minuman') NOT NULL,
+  `email_pengguna` varchar(50) NOT NULL,
+  `perkiraan_harga` decimal(10,2) NOT NULL,
+  `alasan_request` text NOT NULL,
+  `gambar_referensi` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `request_menu`
+--
+
+INSERT INTO `request_menu` (`id_request`, `nama_menu`, `deskripsi_menu`, `jenis_menu`, `email_pengguna`, `perkiraan_harga`, `alasan_request`, `gambar_referensi`) VALUES
+(1, 'Ayam geprek', 'Dengan sambel bawang', 'Makanan', 'tes@gmail.com', 25000.00, 'makanan favorit', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `resep_makanan`
+--
+
+CREATE TABLE `resep_makanan` (
+  `id_resep` int(11) NOT NULL,
+  `nama_resep` varchar(100) NOT NULL,
+  `deskripsi` text NOT NULL,
+  `bahan` text NOT NULL,
+  `langkah_persiapan` text NOT NULL,
+  `waktu_persiapan` int(11) NOT NULL,
+  `tingkat_kesulitan` enum('Mudah','Sedang','Sulit') NOT NULL,
+  `gambar` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `resep_makanan`
+--
+
+INSERT INTO `resep_makanan` (`id_resep`, `nama_resep`, `deskripsi`, `bahan`, `langkah_persiapan`, `waktu_persiapan`, `tingkat_kesulitan`, `gambar`) VALUES
+(1, 'Laksa Bangka', 'Laksa khas Bangka dengan kuah santan gurih.', 'Tepung beras, santan, bawang putih, udang, bumbu rempah.', '1. Siapkan bahan. 2. Masak kuah. 3. Sajikan.', 60, 'Sedang', 'laksa_bangka.png'),
+(2, 'Lempah Kuning', 'Sup ikan khas Bangka dengan kuah asam pedas.', 'Ikan tenggiri, nanas, cabai, kunyit, asam jawa.', '1. Rebus bahan. 2. Tambahkan ikan. 3. Sajikan.', 45, 'Mudah', 'lempah_kuning.png'),
+(3, 'tes', 'tes', 'tes', 'tes', 123, '', 'tes');
+
 --
 -- Indexes for dumped tables
 --
@@ -221,6 +273,18 @@ ALTER TABLE `promo`
   ADD KEY `id_kategori` (`id_kategori`);
 
 --
+-- Indexes for table `request_menu`
+--
+ALTER TABLE `request_menu`
+  ADD PRIMARY KEY (`id_request`);
+
+--
+-- Indexes for table `resep_makanan`
+--
+ALTER TABLE `resep_makanan`
+  ADD PRIMARY KEY (`id_resep`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -234,7 +298,7 @@ ALTER TABLE `information`
 -- AUTO_INCREMENT for table `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `makanan`
@@ -259,6 +323,18 @@ ALTER TABLE `orders`
 --
 ALTER TABLE `promo`
   MODIFY `id_promo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `request_menu`
+--
+ALTER TABLE `request_menu`
+  MODIFY `id_request` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `resep_makanan`
+--
+ALTER TABLE `resep_makanan`
+  MODIFY `id_resep` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables

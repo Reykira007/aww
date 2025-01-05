@@ -1,0 +1,73 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/etNamaResep"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nama Resep"
+            android:inputType="text"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/etDeskripsi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Deskripsi"
+            android:inputType="text"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/etBahan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Bahan-bahan"
+            android:inputType="textMultiLine"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/etLangkahPersiapan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Langkah Persiapan"
+            android:inputType="textMultiLine"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/etWaktuPersiapan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Waktu Persiapan (menit)"
+            android:inputType="number"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/etTingkatKesulitan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tingkat Kesulitan (Mudah/Sedang/Sulit)"
+            android:inputType="text"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/etGambar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="URL Gambar"
+            android:inputType="text"
+            android:layout_marginBottom="16dp" />
+
+        <Button
+            android:id="@+id/btnTambahResep"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tambah Resep" />
+    </LinearLayout>
+</ScrollView>
